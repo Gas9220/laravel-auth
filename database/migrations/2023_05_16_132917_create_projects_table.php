@@ -21,7 +21,7 @@ return new class extends Migration
             $table->float('revenues');
             $table->string('client');
             $table->text('project_summary');
-            $$table->boolean('is_completed');
+            $table->boolean('is_completed');
             $table->string('slug');
             $table->timestamps();
         });

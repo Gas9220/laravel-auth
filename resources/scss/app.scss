@@ -1,1 +1,8 @@
-@import '~bootstrap/scss/bootstrap'
+@import '~bootstrap/scss/bootstrap';
+
+.delete-btn {
+    border: none;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+}

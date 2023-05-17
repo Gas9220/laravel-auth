@@ -2,7 +2,10 @@
 
 @section('content')
     <div class="container-fluid">
-        <h2 class="fs-4 text-secondary my-4"> My Projects</h2>
+        <div class="d-flex align-items-center justify-content-between">
+            <h2 class="fs-4 text-secondary my-4"> My Projects</h2>
+            <a href="{{route('admin.projects.create')}}" class="btn btn-primary btn-sm ms-2">Create new project</a>
+        </div>
         <table class="table">
             <thead>
                 <tr>

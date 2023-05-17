@@ -20,7 +20,11 @@
             <tbody>
                 @foreach ($projects as $project)
                     <tr>
-                        <th scope="row">{{ $project->project_name }}</th>
+                        <th scope="row">
+                            <a href="{{ route('admin.projects.show', $project->id) }}">
+                                {{ $project->project_name }}
+                            </a>
+                        </th>
                         <td>{{ $project->start_date }}</td>
                         <td>{{ $project->end_date }}</td>
                         <td>{{ $project->revenues }}€</td>

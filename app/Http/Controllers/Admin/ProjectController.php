@@ -75,11 +75,10 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         $request->validated();
-
         $data = $request->all();
-        $project->update($data);
+        $project->is_completed = $request['is_completed'] ? 1 : 0;
         $project->slug = Str::slug($project->project_name, '-');
-        $project->save();
+        $project->update($data);
 
         return to_route('admin.projects.show', $project->id)->with('message', 'Hai modificato con successo il progetto');
     }

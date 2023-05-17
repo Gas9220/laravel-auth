@@ -48,8 +48,7 @@
             </div>
             <div class="form-check">
                 <label class="form-check-label" for="is_completed">Project completed</label>
-                <input class="form-check-input" type="checkbox" id="is_completed" name="is_completed"
-                    value="{{old('is_completed', $project->is_completed)}}">
+                <input class="form-check-input" type="checkbox" id="is_completed" name="is_completed" @if($project->is_completed === 1) checked @endif value="1">
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
         </form>

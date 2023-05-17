@@ -4,7 +4,12 @@
     <div class="container-fluid">
         <div class="d-flex align-items-center justify-content-between">
             <h2 class="fs-4 text-secondary my-4"> My Projects</h2>
-            <a href="{{route('admin.projects.create')}}" class="btn btn-primary btn-sm ms-2">Create new project</a>
+            @if (session('message'))
+                <div class="alert alert-danger mb-0" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
+            <a href="{{ route('admin.projects.create') }}" class="btn btn-primary btn-sm ms-2">Create new project</a>
         </div>
         <table class="table">
             <thead>
@@ -45,7 +50,8 @@
                                     </button>
                                 </form>
                                 <div class="circle-btn d-flex align-items-center justify-content-center edit-btn">
-                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="text-decoration-none text-white"><i class="bi bi-pencil-fill"></i></a>
+                                    <a href="{{ route('admin.projects.edit', $project->id) }}"
+                                        class="text-decoration-none text-white"><i class="bi bi-pencil-fill"></i></a>
                                 </div>
                             </div>
                         </td>

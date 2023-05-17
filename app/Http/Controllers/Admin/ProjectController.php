@@ -48,7 +48,7 @@ class ProjectController extends Controller
         $new_project->slug = Str::slug($new_project->project_name, '-');
         $new_project->is_completed = $request['is_completed'] ? 1 : 0;
         $new_project->save();
-        return to_route('admin.projects.show', $new_project->id);
+        return to_route('admin.projects.show', $new_project->id)->with('message', 'Progetto creato correttamente');
     }
 
     /**

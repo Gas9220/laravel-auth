@@ -2,12 +2,14 @@
 
 @section('content')
     <div class="container-fluid">
-        @if (session('message'))
-            <h5 class="text-warning">{{ session('message') }}</h5>
-        @endif
         <div class="d-flex align-items-center">
-            <a href="{{ route('admin.projects.index')}}" class="btn btn-primary btn-sm me-2">Back</a>
+            <a href="{{ route('admin.projects.index') }}" class="btn btn-primary btn-sm me-2">Back</a>
             <h2 class="fs-4 text-secondary my-4">Project Details</h2>
+            @if (session('message'))
+                <div class="alert alert-success ms-auto p-2" role="alert">
+                    {{ session('message') }}
+                </div>
+            @endif
         </div>
         <h4>Project name: {{ $project->project_name }}</h4>
         <div>Project start date: {{ $project->start_date }}</div>

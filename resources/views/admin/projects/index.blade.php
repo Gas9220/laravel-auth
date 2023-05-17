@@ -33,13 +33,18 @@
                         <td>{{ $project->is_completed == 0 ? 'Not Completed' : 'Completed' }}</td>
                         <td>{{ $project->slug }}</td>
                         <td>
-                            <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="delete-btn">
-                                    <i class="bi bi-trash3-fill"></i>
-                                </button>
-                            </form>
+                            <div class="d-flex justify-content-between gap-1">
+                                <form action="{{ route('admin.projects.destroy', $project->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="circle-btn delete-btn">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </form>
+                                <div class="circle-btn d-flex align-items-center justify-content-center edit-btn">
+                                    <a href="{{ route('admin.projects.edit', $project->id) }}" class="text-decoration-none text-white"><i class="bi bi-pencil-fill"></i></a>
+                                </div>
+                            </div>
                         </td>
                     </tr>
                 @endforeach

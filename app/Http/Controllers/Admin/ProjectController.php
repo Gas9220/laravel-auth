@@ -46,7 +46,7 @@ class ProjectController extends Controller
 
         $new_project = new Project();
         $new_project->fill($data);
-        
+
         $new_project->slug = Str::slug($new_project->project_name, '-');
         $new_project->is_completed = $request['is_completed'] ? 1 : 0;
 
@@ -91,10 +91,23 @@ class ProjectController extends Controller
     {
         $request->validated();
         $data = $request->all();
+        //dd($data);
+
         $project->is_completed = $request['is_completed'] ? 1 : 0;
         $project->slug = Str::slug($project->project_name, '-');
-        $project->update($data);
 
+        if (isset($data['project_image'])) {
+
+            if($project->project_image){
+                Storage::delete($project->project_image);
+            }
+
+            $project->project_image = Storage::put('uploads', $data['project_image']);
+            //dd($project->project_image );
+        }
+
+        $project->update($data);
+        //dd($project);
         return to_route('admin.projects.show', $project->id)->with('message', 'Hai modificato con successo il progetto');
     }
 

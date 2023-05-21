@@ -16,7 +16,7 @@
             <h2 class="fs-4 text-secondary my-4">Edit Project</h2>
         </div>
 
-        <form action="{{ route('admin.projects.update', $project->id) }}" method="POST">
+        <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -35,20 +35,29 @@
                     value="{{ old('project_summary', $project->project_summary) }}">
             </div>
             <div class="mb-3">
-                <label for="revenues" class="form-label">revenues</label>
+                <label for="project_image" class="form-label">Project Image</label>
+                <input class="form-control" type="file" id="project_image" name="project_image">
+                @if ($project->project_image)
+                    <button type="button" class="btn btn-danger btn-sm mt-2" onclick="">Remove previus image</button>
+                @endif
+            </div>
+            <div class="mb-3">
+                <label for="revenues" class="form-label">Revenues</label>
                 <input type="numeric" class="form-control" id="revenues" name="revenues"
                     value="{{ old('revenues', $project->revenues) }}">
             </div>
             <div class="mb-3">
                 <label class="form-label" for="start_date">Start date</label>
-                <input type="date" id="start_date" name="start_date" value="{{ old('start_date', $project->start_date) }}">
+                <input type="date" id="start_date" name="start_date"
+                    value="{{ old('start_date', $project->start_date) }}">
 
                 <label class="form-label ms-3" for="end_date">End date</label>
                 <input type="date" id="end_date" name="end_date" value="{{ old('end_date', $project->end_date) }}">
             </div>
             <div class="form-check">
                 <label class="form-check-label" for="is_completed">Project completed</label>
-                <input class="form-check-input" type="checkbox" id="is_completed" name="is_completed" @if($project->is_completed === 1) checked @endif value="1">
+                <input class="form-check-input" type="checkbox" id="is_completed" name="is_completed"
+                    @if ($project->is_completed === 1) checked @endif value="1">
             </div>
             <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
         </form>

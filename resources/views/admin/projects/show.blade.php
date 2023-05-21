@@ -12,6 +12,10 @@
             @endif
         </div>
         <h4>Project name: {{ $project->project_name }}</h4>
+        @if (isset($project->project_image))
+            <img src="{{ asset('storage/' . $project->project_image) }}" alt='{{ $project->project_name . ' image' }}'
+                class="project-image">
+        @endif
         <div>Project start date: {{ $project->start_date }}</div>
         <div>Project end date: {{ $project->end_date }}</div>
         <div>Project revenues: {{ $project->revenues }}€</div>

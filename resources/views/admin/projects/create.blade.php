@@ -16,7 +16,7 @@
             <h2 class="fs-4 text-secondary my-4">Create Project</h2>
         </div>
 
-        <form action="{{ route('admin.projects.store') }}" method="POST">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-3">
@@ -32,6 +32,10 @@
                 <input type="text" class="form-control" id="project_summary" name="project_summary">
             </div>
             <div class="mb-3">
+                <label for="project_image" class="form-label">Project Image</label>
+                <input class="form-control" type="file" id="project_image" name="project_image">
+            </div>
+            <div class="mb-4">
                 <label for="revenues" class="form-label">Revenues</label>
                 <input type="numeric" class="form-control" id="revenues" name="revenues">
             </div>

@@ -30,7 +30,8 @@ class StoreProjectRequest extends FormRequest
             'revenues' => 'required|numeric',
             'client' => 'required|string',
             'project_summary' => 'required|string',
-            'is_completed' => 'boolean'
+            'is_completed' => 'boolean',
+            'project_image' => 'nullable|image'
         ];
     }
 }

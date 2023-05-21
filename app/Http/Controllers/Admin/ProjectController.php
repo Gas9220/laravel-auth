@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -45,8 +46,14 @@ class ProjectController extends Controller
 
         $new_project = new Project();
         $new_project->fill($data);
+        
         $new_project->slug = Str::slug($new_project->project_name, '-');
         $new_project->is_completed = $request['is_completed'] ? 1 : 0;
+
+        if (isset($data['project_image'])) {
+            $new_project->project_image = Storage::put('uploads', $data['project_image']);
+        }
+
         $new_project->save();
         return to_route('admin.projects.show', $new_project->id)->with('message', 'Progetto creato correttamente');
     }

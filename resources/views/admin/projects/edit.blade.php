@@ -16,7 +16,7 @@
             <h2 class="fs-4 text-secondary my-4">Edit Project</h2>
         </div>
 
-        <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.update', $project) }}" method="POST" enctype="multipart/form-data" class="project-form">
             @csrf
             @method('PUT')
             <div class="mb-3">
@@ -38,7 +38,9 @@
                 <label for="project_image" class="form-label">Project Image</label>
                 <input class="form-control" type="file" id="project_image" name="project_image">
                 @if ($project->project_image)
-                    <button type="button" class="btn btn-danger btn-sm mt-2" onclick="">Remove previus image</button>
+                    <input type="text" class="d-none" id="remove-img-input" name="delete_prev_image">
+                    <span id="img-removed-message" class="d-none mt-2 text-success">Previous image removed</span>
+                    <button type="button" class="btn btn-danger btn-sm mt-2" id="remove-img-btn">Remove previus image</button>
                 @endif
             </div>
             <div class="mb-3">

@@ -16,7 +16,7 @@
             <h2 class="fs-4 text-secondary my-4">Create Project</h2>
         </div>
 
-        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.projects.store') }}" method="POST" enctype="multipart/form-data" class="project-form">
             @csrf
 
             <div class="mb-3">

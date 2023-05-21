@@ -91,23 +91,23 @@ class ProjectController extends Controller
     {
         $request->validated();
         $data = $request->all();
-        //dd($data);
-
         $project->is_completed = $request['is_completed'] ? 1 : 0;
         $project->slug = Str::slug($project->project_name, '-');
 
         if (isset($data['project_image'])) {
 
-            if($project->project_image){
+            if ($project->project_image) {
                 Storage::delete($project->project_image);
             }
 
             $project->project_image = Storage::put('uploads', $data['project_image']);
-            //dd($project->project_image );
+        } else if ($data['delete_prev_image'] == 'true') {
+            Storage::delete($project->project_image);
+            $project->project_image = null;
+
         }
 
         $project->update($data);
-        //dd($project);
         return to_route('admin.projects.show', $project->id)->with('message', 'Hai modificato con successo il progetto');
     }
 
@@ -121,6 +121,6 @@ class ProjectController extends Controller
     {
         $project_name = $project->project_name;
         $project->delete();
-        return to_route('admin.projects.index')->with('message', $project_name.' eliminato con successo');
+        return to_route('admin.projects.index')->with('message', $project_name . ' eliminato con successo');
     }
 }
